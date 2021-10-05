@@ -15,6 +15,8 @@ class Place(object):
         # Phase 1: Add an entrance to the exit
         # BEGIN 1.2
         "*** YOUR CODE HERE ***"
+        if self.exit is not None:
+            self.exit.entrance = self
         # END 1.2
 
     def add_fighter(self, fighter):

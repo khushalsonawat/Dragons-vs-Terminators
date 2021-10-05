@@ -10,6 +10,10 @@ class ThrowerDragon(Dragon):
     damage = 1
 
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
+    food_cost = 3
+
+    def __init__(self, armor=1):
+        super().__init__(armor=armor)
 
     def nearest_terminator(self, skynet):
         """Return the nearest Terminator in a Place that is not the SKYNET, connected to
