@@ -1,11 +1,11 @@
 test = {
-    'name': 'phase_4',
-    'points': 0,
-    'suites': [
+  'name': 'phase_4',
+  'points': 0,
+  'suites': [
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing water with Dragons
           >>> test_water = Water('Water Test1')
           >>> dragon = HarvesterDragon()
@@ -21,11 +21,11 @@ test = {
           >>> (dragon.armor, test_water.dragon is None)
           (0, True)
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing water with soggy (non-watersafe) terminators
           >>> test_terminator = Terminator(1000000)
           >>> test_terminator.is_watersafe = False    # Make Terminator non-watersafe
@@ -36,11 +36,11 @@ test = {
           >>> test_water.terminators
           []
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing water with watersafe terminators
           >>> test_terminator = Terminator(1)
           >>> test_water = Water('Water Test3')
@@ -50,11 +50,11 @@ test = {
           >>> test_water.terminators == [test_terminator]
           True
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # test proper call to death callback
           >>> original_death_callback = Fighter.death_callback
           >>> Fighter.death_callback = lambda x: print("fighter died")
@@ -68,12 +68,12 @@ test = {
           fighter died
           >>> Fighter.death_callback = original_death_callback
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> from dragons import *
       >>> from assault_plans import *
       >>> skynet, layout = Skynet(make_test_assault_plan()), dry_layout
@@ -81,13 +81,13 @@ test = {
       >>> colony = DragonColony(None, skynet, dragon_types(), layout, dimensions)
       >>> #
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing water inheritance
           >>> old_add_fighter = Place.add_fighter
           >>> def new_add_fighter(self, fighter):
@@ -100,12 +100,12 @@ test = {
           called add_fighter
           >>> Place.add_fighter = old_add_fighter
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> from dragons import *
       >>> from assault_plans import *
       >>> skynet, layout = Skynet(make_test_assault_plan()), dry_layout
@@ -113,15 +113,15 @@ test = {
       >>> colony = DragonColony(None, skynet, dragon_types(), layout, dimensions)
       >>> old_add_fighter = Place.add_fighter
       """,
-            'teardown': r"""
+      'teardown': r"""
       >>> Place.add_fighter = old_add_fighter
       """,
-            'type': 'doctest'
-        },
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing ScubaThrower parameters
           >>> scuba = ScubaThrower()
           >>> ScubaThrower.food_cost
@@ -129,21 +129,21 @@ test = {
           >>> scuba.armor
           1
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': False,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': False,
+      'setup': r"""
       >>> from dragons import *
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing if ScubaThrower is watersafe
           >>> water = Water('Water')
           >>> dragon = ScubaThrower()
@@ -153,11 +153,11 @@ test = {
           >>> dragon.armor
           1
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing that ThrowerDragon is not watersafe
           >>> water = Water('Water')
           >>> dragon = ThrowerDragon()
@@ -167,11 +167,11 @@ test = {
           >>> dragon.armor
           0
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing ScubaThrower on land
           >>> place1 = colony.places["tunnel_0_0"]
           >>> place2 = colony.places["tunnel_0_4"]
@@ -183,11 +183,11 @@ test = {
           >>> terminator.armor  # ScubaThrower can throw on land
           2
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing ScubaThrower in the water
           >>> water = Water("water")
           >>> water.entrance = colony.places["tunnel_0_1"]
@@ -200,25 +200,25 @@ test = {
           >>> terminator.armor  # ScubaThrower can throw in water
           2
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> from dragons import *
       >>> skynet, layout = Skynet(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
       >>> colony = DragonColony(None, skynet, dragon_types(), layout, dimensions)
       >>> #
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing ScubaThrower Inheritance from ThrowerDragon
           >>> def new_action(self, colony):
           ...     raise NotImplementedError()
@@ -240,12 +240,12 @@ test = {
           ...     print('inherits throw_at!')
           inherits throw_at!
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> from dragons import *
       >>> skynet, layout = Skynet(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
@@ -253,33 +253,33 @@ test = {
       >>> old_thrower_action = ThrowerDragon.action
       >>> old_throw_at = ThrowerDragon.throw_at
       """,
-            'teardown': r"""
+      'teardown': r"""
       >>> ThrowerDragon.action = old_thrower_action
       >>> ThrowerDragon.throw_at = old_throw_at
       """,
-            'type': 'doctest'
-        },
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> from dragons import *
           >>> ScubaThrower.implemented
           True
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': '',
-            'teardown': '',
-            'type': 'doctest'
-        },
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': '',
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing DragonKing parameters
           >>> DragonKing.food_cost
           7
@@ -287,21 +287,21 @@ test = {
           >>> king.armor
           1
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> from dragons import *
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # DragonKing Placement
           >>> king = dragons.DragonKing()
           >>> impostor = dragons.DragonKing()
@@ -329,11 +329,11 @@ test = {
           >>> front_dragon.damage
           1
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # DragonKing Removal
           >>> king = dragons.DragonKing()
           >>> impostor = dragons.DragonKing()
@@ -347,11 +347,11 @@ test = {
           >>> place.dragon is king        # True king cannot be removed
           True
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # DragonKing knows how to swim
           >>> king = dragons.DragonKing()
           >>> water = dragons.Water('Water')
@@ -359,11 +359,11 @@ test = {
           >>> king.armor
           1
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing damage multiplier
           >>> king_tunnel, side_tunnel = [[colony.places['tunnel_{0}_{1}'.format(i, j)]
           ...         for j in range(9)] for i in range(2)]
@@ -402,12 +402,12 @@ test = {
           >>> side_terminator.armor
           9
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> import dragons, importlib
       >>> importlib.reload(dragons)
       >>> skynet = dragons.Skynet(dragons.AssaultPlan())
@@ -416,13 +416,13 @@ test = {
       ...         dragons.dry_layout, dimensions)
       >>> dragons.terminators_win = lambda: None
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing game over
           >>> king = dragons.DragonKing()
           >>> impostor = dragons.DragonKing()
@@ -433,16 +433,16 @@ test = {
           >>> terminator = dragons.Terminator(3)
           >>> tunnel[6].add_fighter(terminator)     # Terminator in place with impostor
           >>> terminator.action(colony)            # Game should not end
-
+          
           >>> terminator.move_to(tunnel[4])        # Terminator moved to place with true king
           >>> terminator.action(colony)            # Game should end
           TerminatorsWinException
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing if king will not crash with no one to buff
           >>> king = dragons.DragonKing()
           >>> colony.places['tunnel_0_2'].add_fighter(king)
@@ -454,11 +454,11 @@ test = {
           >>> terminator.armor # King should still hit the terminator
           2
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing DragonKing action method
           >>> king = dragons.DragonKing()
           >>> impostor = dragons.DragonKing()
@@ -468,13 +468,13 @@ test = {
           >>> colony.places['tunnel_0_1'].add_fighter(king)
           >>> colony.places['tunnel_0_2'].add_fighter(impostor)
           >>> colony.places['tunnel_0_4'].add_fighter(terminator)
-
+          
           >>> impostor.action(colony)
           >>> terminator.armor   # Impostor should not damage terminator
           10
           >>> dragon.damage  # Impostor should not double damage
           1
-
+          
           >>> king.action(colony)
           >>> terminator.armor   # King should damage terminator
           9
@@ -483,17 +483,17 @@ test = {
           >>> dragon.action(colony)
           >>> terminator.armor   # If failed, ThrowerDragon has incorrect damage
           7
-
+          
           >>> king.armor   # Long live the King
           1
           >>> impostor.armor  # Short-lived impostor
           0
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Extensive damage doubling tests
           >>> king_tunnel, side_tunnel = [[colony.places['tunnel_{0}_{1}'.format(i, j)]
           ...         for j in range(9)] for i in range(2)]
@@ -575,11 +575,11 @@ test = {
           >>> (thrower1.damage, thrower2.damage)
           (20002, 20004)
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Adding/Removing DragonKing with Container
           >>> place = colony.places['tunnel_0_3']
           >>> king = dragons.DragonKing()
@@ -604,11 +604,11 @@ test = {
           True
           >>> king.action(colony) # should not error
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # test proper call to death callback
           >>> original_death_callback = dragons.Fighter.death_callback
           >>> dragons.Fighter.death_callback = lambda x: print("fighter died")
@@ -620,12 +620,12 @@ test = {
           fighter died
           >>> dragons.Fighter.death_callback = original_death_callback
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> import dragons, importlib
       >>> importlib.reload(dragons)
       >>> skynet = dragons.Skynet(dragons.AssaultPlan())
@@ -634,30 +634,30 @@ test = {
       ...         dragons.dry_layout, dimensions)
       >>> #
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> from dragons import *
           >>> DragonKing.implemented
           True
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': '',
-            'teardown': '',
-            'type': 'doctest'
-        },
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': '',
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> # Testing status parameters
           >>> slow = SlowThrower()
           >>> scary = ScaryThrower()
@@ -670,11 +670,11 @@ test = {
           >>> scary.armor
           1
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing Slow
           >>> slow = SlowThrower()
           >>> terminator = Terminator(3)
@@ -695,11 +695,11 @@ test = {
           >>> terminator.place.name
           'tunnel_0_1'
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing Scare
           >>> scary = ScaryThrower()
           >>> terminator = Terminator(3)
@@ -716,11 +716,11 @@ test = {
           >>> terminator.place.name
           'tunnel_0_5'
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Scary stings a dragon
           >>> scary = ScaryThrower()
           >>> harvester = HarvesterDragon()
@@ -738,11 +738,11 @@ test = {
           >>> harvester.armor
           0
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing if effects stack
           >>> slow = SlowThrower()
           >>> terminator = Terminator(3)
@@ -785,82 +785,82 @@ test = {
           >>> terminator.place.name
           'tunnel_0_3'
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing multiple scared terminators
           >>> scare1 = ScaryThrower()
           >>> scare2 = ScaryThrower()
           >>> terminator1 = Terminator(3)
           >>> terminator2 = Terminator(3)
-
+          
           >>> colony.places["tunnel_0_0"].add_fighter(scare1)
           >>> colony.places["tunnel_0_1"].add_fighter(terminator1)
           >>> colony.places["tunnel_0_4"].add_fighter(scare2)
           >>> colony.places["tunnel_0_5"].add_fighter(terminator2)
-
+          
           >>> scare1.action(colony)
           >>> scare2.action(colony)
           >>> terminator1.action(colony)
           >>> terminator2.action(colony)
-
+          
           >>> terminator1.place.name
           'tunnel_0_2'
           >>> terminator2.place.name
           'tunnel_0_6'
-
+          
           >>> terminator1.action(colony)
           >>> terminator2.action(colony)
-
+          
           >>> terminator1.place.name
           'tunnel_0_3'
           >>> terminator2.place.name
           'tunnel_0_7'
-
+          
           >>> terminator1.action(colony)
           >>> terminator2.action(colony)
-
+          
           >>> terminator1.place.name
           'tunnel_0_2'
           >>> terminator2.place.name
           'tunnel_0_6'
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> scare = ScaryThrower()
           >>> terminator = Terminator(3)
           >>> colony.places["tunnel_0_0"].add_fighter(scare)
           >>> colony.places["tunnel_0_1"].add_fighter(terminator)
-
+          
           >>> scare.action(colony)
           >>> terminator.action(colony)
-
+          
           >>> terminator.place.name
           'tunnel_0_2'
-
+          
           >>> terminator.action(colony)
-
+          
           >>> terminator.place.name
           'tunnel_0_3'
-
+          
           >>> #
           >>> # Same terminator should not be scared more than once
           >>> scare.action(colony)
           >>> terminator.action(colony)
-
+          
           >>> terminator.place.name
           'tunnel_0_2'
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> # Testing long effect stack
           >>> scary = ScaryThrower()
           >>> slow = SlowThrower()
@@ -868,114 +868,114 @@ test = {
           >>> colony.places["tunnel_0_0"].add_fighter(scary)
           >>> colony.places["tunnel_0_1"].add_fighter(slow)
           >>> colony.places["tunnel_0_3"].add_fighter(terminator)
-
+          
           >>> scary.action(colony) # scare terminator once
-
+          
           >>> colony.time = 0
           >>> terminator.action(colony) # scared
           >>> terminator.place.name
           'tunnel_0_4'
-
+          
           >>> for _ in range(3): # slow terminator three times
           ...     slow.action(colony)
-
+          
           >>> colony.time = 1
           >>> terminator.action(colony) # scared, but also slowed thrice
           >>> terminator.place.name
           'tunnel_0_4'
-
+          
           >>> colony.time = 2
           >>> terminator.action(colony) # scared and slowed thrice
           >>> terminator.place.name
           'tunnel_0_5'
-
+          
           >>> colony.time = 3
           >>> terminator.action(colony) # slowed thrice
           >>> terminator.place.name
           'tunnel_0_5'
-
+          
           >>> colony.time = 4
           >>> terminator.action(colony) # slowed twice
           >>> terminator.place.name
           'tunnel_0_4'
-
+          
           >>> colony.time = 5
           >>> terminator.action(colony) # slowed twice
           >>> terminator.place.name
           'tunnel_0_4'
-
+          
           >>> colony.time = 6
           >>> terminator.action(colony) # slowed once
           >>> terminator.place.name
           'tunnel_0_3'
-
+          
           >>> colony.time = 7
           >>> terminator.action(colony) # status effects have worn off
           >>> terminator.place.name
           'tunnel_0_2'
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> scary = ScaryThrower()
           >>> slow = SlowThrower()
           >>> terminator = Terminator(3)
           >>> colony.places["tunnel_0_0"].add_fighter(scary)
           >>> colony.places["tunnel_0_1"].add_fighter(slow)
           >>> colony.places["tunnel_0_3"].add_fighter(terminator)
-
+          
           >>> slow.action(colony) # slow terminator
           >>> scary.action(colony) # scare terminator
-
+          
           >>> terminator.place.name
           'tunnel_0_3'
-
+          
           >>> colony.time = 0
           >>> terminator.action(colony) # scared and slowed
           >>> terminator.place.name
           'tunnel_0_4'
-
+          
           >>> colony.time = 1
           >>> terminator.action(colony) # scared and slowed
           >>> terminator.place.name
           'tunnel_0_4'
-
+          
           >>> colony.time = 2
           >>> terminator.action(colony) # slowed
           >>> terminator.place.name
           'tunnel_0_3'
           """,
-                    'hidden': False,
-                    'locked': False
-                },
-                {
-                    'code': r"""
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
           >>> from dragons import *
           >>> ScaryThrower.implemented
           True
           >>> SlowThrower.implemented
           True
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> from dragons import *
       >>> skynet, layout = Skynet(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
       >>> colony = DragonColony(None, skynet, dragon_types(), layout, dimensions)
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> laser = LaserDragon()
           >>> dragon = HarvesterDragon(2)
           >>> terminator1 = Terminator(2)
@@ -1000,36 +1000,36 @@ test = {
           >>> round(terminator3.armor, 2)
           1.2
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': r"""
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
       >>> from dragons import *
       >>> skynet, layout = Skynet(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
       >>> colony = DragonColony(None, skynet, dragon_types(), layout, dimensions)
       """,
-            'teardown': '',
-            'type': 'doctest'
-        },
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
         {
-            'cases': [
-                {
-                    'code': r"""
+          'code': r"""
           >>> from dragons import *
           >>> LaserDragon.implemented
           True
           """,
-                    'hidden': False,
-                    'locked': False
-                }
-            ],
-            'scored': True,
-            'setup': '',
-            'teardown': '',
-            'type': 'doctest'
+          'hidden': False,
+          'locked': False
         }
-    ]
+      ],
+      'scored': True,
+      'setup': '',
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
 }
