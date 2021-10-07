@@ -24,13 +24,13 @@ class ThrowerDragon(Dragon):
         # BEGIN 1.3 and 2.1
         temp = self.place
 
-        while temp != "Skynet":
+        while temp != skynet:
             if temp.terminators != []:
                 return random_or_none(temp.terminators)
             else:
                 temp = temp.entrance
 
-        if temp == "Skynet":
+        if temp == skynet:
             return None
         # END 1.3 and 2.1
 
