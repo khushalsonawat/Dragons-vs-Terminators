@@ -8,7 +8,8 @@ class ThrowerDragon(Dragon):
     name = 'Thrower'
     implemented = True
     damage = 1
-
+    min_range = float('inf')
+    max_range = float('inf')
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
     food_cost = 3
 
